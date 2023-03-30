@@ -5,7 +5,7 @@
     cd redis-stable
     make
 3. start the redis server
-    ./redis-stable/src/redis-server&
+    ./src/redis-server&
 4. verify server is running
     ps aux | grep redis
     should respond with:
