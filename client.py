@@ -1,3 +1,4 @@
 import redis
-r = redis.Redis()
-print(r.ping())
+r = redis.Redis(decode_responses=True)
+r.set('key','value')
+print(r.get('shalom'))
