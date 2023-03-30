@@ -1,17 +1,16 @@
 from flask import Flask, render_template, request, Response
 import redis
-# import cv2
 
 app = Flask(__name__)
-
+r=redis.Redis(decode_responses=True)
 # Login page with interactive buttons
-@app.route("/login", methods=["GET", "POST"])
+@app.route("/", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
-        if username in users and users[username] == password:
-            return f"Welcome back, {username}!"
+        if r.get(username) == password:
+            return render_template("camera.html")
         else:
             error = "Invalid username or password"
             return render_template("index.html", error=error)
@@ -35,10 +34,10 @@ def register():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
-        if username in users:
+        if r.exists(username):
             return "Username already taken"
         else:
-            users[username] = password
+            r.set(username,password)
             return redirect(url_for("login"))
     else:
         return render_template("register.html")
