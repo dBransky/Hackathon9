@@ -17,5 +17,7 @@
 7. install redis and flask
     pip install redis 
     pip install flask 
+    pip install scikit-build
+    pip install opencv-python-headless
 8. start the client 
     FLASK_NAME=client.py flask run
