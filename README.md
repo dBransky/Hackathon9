@@ -1,4 +1,5 @@
-1. run in repo dir\n\twget https://download.redis.io/redis-stable.tar.gz
+1. run in repo dir
+    wget https://download.redis.io/redis-stable.tar.gz
 2. run
     tar -xzvf redis-stable.tar.gz
     cd redis-stable
