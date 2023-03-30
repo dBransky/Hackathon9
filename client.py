@@ -1,3 +1,3 @@
 import redis
 r = redis.Redis()
-r.ping()
+print(r.ping())
