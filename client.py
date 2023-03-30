@@ -29,6 +29,18 @@ def camera():
         # Render the image on the page
         return render_template('camera.html', image_data=response)
     return render_template('camera.html')
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
+        if username in users:
+            return "Username already taken"
+        else:
+            users[username] = password
+            return redirect(url_for("login"))
+    else:
+        return render_template("register.html")
 
 if __name__ == '__main__':
     app.run(debug=True)

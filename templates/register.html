@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Login</title>
+    <title>Register</title>
     <style>
       body {
         font-family: Arial, Helvetica, sans-serif;
@@ -41,7 +41,7 @@
       button[type="submit"]:hover {
         background-color: #45a049;
       }
-      .register-link {
+      .login-link {
         display: block;
         text-align: center;
         margin-top: 20px;
@@ -50,14 +50,14 @@
   </head>
   <body>
     <div class="container">
-      <h1>Login</h1>
+      <h1>Register</h1>
       <form method="POST">
         <label for="username">Username:</label>
-        <input type="text" id="username" name="username" placeholder="Enter your username">
+        <input type="text" id="username" name="username" placeholder="Enter a username">
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password" placeholder="Enter your password">
-        <button type="submit">Login</button>
-        <a href="/register" class="register-link">Don't have an account? Register here</a>
+        <input type="password" id="password" name="password" placeholder="Enter a password">
+        <button type="submit">Register</button>
+        <a href="/" class="login-link">Already have an account? Login here</a>
       </form>
     </div>
   </body>
