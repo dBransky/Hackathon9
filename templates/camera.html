@@ -2,27 +2,49 @@
 <html>
   <head>
     <title>Camera</title>
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #f4f4f4;
+      }
+      .container {
+        background-color: #fff;
+        max-width: 500px;
+        margin: auto;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+      }
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      button[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 12px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 100%;
+      }
+      button[type="submit"]:hover {
+        background-color: #45a049;
+      }
+      input[type="file"] {
+        display: block;
+        margin-bottom: 10px;
+      }
+    </style>
   </head>
   <body>
-    <h1>Camera</h1>
-    <button onclick="takePhoto()">Take Photo</button>
-    <br><br>
-    <div id="photo-container"></div>
-    <script>
-      function takePhoto() {
-        fetch('/camera', {
-          method: 'POST'
-        })
-        .then(response => response.arrayBuffer())
-        .then(buffer => {
-          const photo = document.createElement('img');
-          photo.src = 'data:image/png;base64,' + btoa(
-            new Uint8Array(buffer)
-              .reduce((data, byte) => data + String.fromCharCode(byte), '')
-          );
-          document.getElementById('photo-container').appendChild(photo);
-        });
-      }
-    </script>
+    <div class="container">
+      <h1>Camera</h1>
+      <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="image" accept="image/*">
+        <button type="submit">Take photo</button>
+      </form>
+    </div>
   </body>
 </html>

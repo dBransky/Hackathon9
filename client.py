@@ -5,17 +5,18 @@ import redis
 app = Flask(__name__)
 
 # Login page with interactive buttons
-@app.route('/', methods=['GET', 'POST'])
-def index():
-    r=redis.Redis(decode_responses=True)
-    if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-        r.set(username,password)
-        # do something with the username and password
-        return render_template('camera.html')
-    return render_template('index.html')
-
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
+        if username in users and users[username] == password:
+            return f"Welcome back, {username}!"
+        else:
+            error = "Invalid username or password"
+            return render_template("index.html", error=error)
+    else:
+        return render_template("index.html")
 # # Camera page with image taker
 @app.route('/camera', methods=['GET', 'POST'])
 def camera():

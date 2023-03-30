@@ -19,15 +19,6 @@
         text-align: center;
         margin-bottom: 20px;
       }
-      input[type="text"], input[type="password"] {
-        width: 100%;
-        padding: 12px 20px;
-        margin: 8px 0;
-        display: inline-block;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-      }
       button[type="submit"] {
         background-color: #4CAF50;
         color: white;
@@ -41,24 +32,26 @@
       button[type="submit"]:hover {
         background-color: #45a049;
       }
-      .register-link {
-        display: block;
-        text-align: center;
-        margin-top: 20px;
+      .error {
+        color: red;
+        margin-bottom: 10px;
       }
     </style>
   </head>
   <body>
     <div class="container">
       <h1>Login</h1>
+      {% if error %}
+      <p class="error">{{ error }}</p>
+      {% endif %}
       <form method="POST">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" placeholder="Enter your username">
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" placeholder="Enter your password">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
         <button type="submit">Login</button>
-        <a href="/register" class="register-link">Don't have an account? Register here</a>
       </form>
+      <p>Don't have an account? <a href="{{ url_for('register') }}">Register</a></p>
     </div>
   </body>
 </html>
